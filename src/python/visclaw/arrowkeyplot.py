@@ -25,11 +25,6 @@ def interactive_plot(setplot=None, outdir=None, fps=None):
 
     def update(i):
         plotframe(i, plotdata, simple=False, refresh=True)
-        for fn in plt.get_fignums():
-            if plt.fignum_exists(fn):
-                plt.figure(fn).canvas.manager.set_window_title(
-                    settings["title"] % f""
-                )
     update(0)
 
     def arrow_key(event):
@@ -56,6 +51,11 @@ def interactive_plot(setplot=None, outdir=None, fps=None):
             settings["fignotxt"] = ""
             if prev != settings["current"]:
                 update(settings["current"])
+            for fn in plt.get_fignums():
+                if plt.fignum_exists(fn):
+                    plt.figure(fn).canvas.manager.set_window_title(
+                        settings["title"] % f""
+                    )
 
     for fn in plt.get_fignums():
         plt.figure(fn).canvas.mpl_connect('key_press_event', arrow_key)
