@@ -35,9 +35,11 @@ def interactive_plot(setplot=None, outdir=None, fps=None):
     def arrow_key(event):
         """If pressed key is in settings, increment index and update plot."""
         if event.key in settings:
+            prev = settings["current"]
             settings["current"] += settings[event.key]
             settings["current"] = max(0, min(settings["max"]-1, settings["current"]))
-            update(settings["current"])
+            if prev != settings["current"]:
+                update(settings["current"])
 
     def to_frame(event):
         if event.key.isnumeric():
@@ -48,10 +50,12 @@ def interactive_plot(setplot=None, outdir=None, fps=None):
                         settings["title"] % f" (#{settings["fignotxt"]})"
                     )
         elif event.key == "enter":
+            prev = settings["current"]
             settings["current"] = int(settings["fignotxt"] or 0)
             settings["current"] = max(0, min(settings["max"]-1, settings["current"]))
             settings["fignotxt"] = ""
-            update(settings["current"])
+            if prev != settings["current"]:
+                update(settings["current"])
 
     for fn in plt.get_fignums():
         plt.figure(fn).canvas.mpl_connect('key_press_event', arrow_key)
