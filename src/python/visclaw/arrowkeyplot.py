@@ -36,7 +36,7 @@ def interactive_plot(setplot=None, outdir=None, fps=None):
         """If pressed key is in settings, increment index and update plot."""
         if event.key in settings:
             settings["current"] += settings[event.key]
-            settings["current"] = max(0, min(settings["max"], settings["current"]))
+            settings["current"] = max(0, min(settings["max"]-1, settings["current"]))
             update(settings["current"])
 
     def to_frame(event):
