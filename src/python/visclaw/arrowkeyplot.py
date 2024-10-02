@@ -56,6 +56,11 @@ def interactive_plot(setplot=None, outdir=None, fps=None):
                     plt.figure(fn).canvas.manager.set_window_title(
                         settings["title"] % f""
                     )
+    
+    def save_all(event):
+        """Save all frames."""
+        if event.key == "a":
+            raise NotImplementedError()
 
     for fn in plt.get_fignums():
         plt.figure(fn).canvas.mpl_connect('key_press_event', arrow_key)
