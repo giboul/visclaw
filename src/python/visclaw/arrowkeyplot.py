@@ -74,7 +74,6 @@ class Iplot:
                     plt.figure(fn).canvas.manager.set_window_title(
                         self.settings["title"] % f""
                     )
-
     def save_all(self, event):
         if event.key == "a":
             plotdir = Path(self.plotdir)
@@ -92,6 +91,26 @@ class Iplot:
                         f = plotdir / f"{fignum}_{solnum}.png"
                         plt.savefig(f)
 
+<<<<<<< HEAD
+    def save_all(self, event):
+        if event.key == "a":
+            plotdir = Path(self.plotdir)
+            plotdir.mkdir(exist_ok=True)
+            nsols = self.settings["max"]
+            s_digits = len(str(nsols))
+            fignums = plt.get_fignums()
+            f_digits = len(fignums)
+            for i in range(nsols):
+                self.update(i)
+                for fn in fignums:
+                    if plt.fignum_exists(fn):
+                        fignum = f"fig{fn:0>{f_digits}}"
+                        solnum = f"sol{i:0>{s_digits}}"
+                        f = plotdir / f"{fignum}_{solnum}.png"
+                        plt.savefig(f)
+
+=======
+>>>>>>> Iplot_mpl
 
 def main():
     from argparse import ArgumentParser
