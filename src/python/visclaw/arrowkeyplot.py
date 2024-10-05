@@ -91,7 +91,6 @@ class Iplot:
                         f = plotdir / f"{fignum}_{solnum}.png"
                         plt.savefig(f)
 
-<<<<<<< HEAD
     def save_all(self, event):
         if event.key == "a":
             plotdir = Path(self.plotdir)
@@ -109,8 +108,6 @@ class Iplot:
                         f = plotdir / f"{fignum}_{solnum}.png"
                         plt.savefig(f)
 
-=======
->>>>>>> Iplot_mpl
 
 def main():
     from argparse import ArgumentParser
